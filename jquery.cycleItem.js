@@ -16,7 +16,7 @@
 		limit: null,
 		onCycle: function(){}
 	};
-	var el, current, next, isForced, isPaused, isAfterForced, cycle, timeout, timeoutStatus, obj, index;
+	var el, current, next, isForced, isPaused, isAfterForced, cycle, timeout, timeoutStatus, obj, index, isEnabled;
 	var methods = {
 		init : function(settings) {
 			if (settings) { $.extend(config, settings) };
@@ -27,6 +27,7 @@
 				}
 				isPaused = false;
 				isForced = false;
+				isEnabled = true;
 				current = -1;
 				next = 0;
 				if(config.limit > 1){
@@ -48,7 +49,13 @@
 				isAfterForced = true;
 			}
 		},
-		_controlCurrent : function(dir) {
+		disableNavigation : function(){
+			isEnabled = false;
+		},
+		enableNavigation : function(){
+			isEnabled = true;
+		},		
+		_controlCurrent : function(dir){
 			if(isAfterForced){
 				current = next;
 				next = current + 1;
@@ -82,7 +89,7 @@
 			methods.cycle();
 		},
 		_forceCycle : function(event){
-			if(!isForced){
+			if(!isForced && isEnabled){
 				methods._delayTimer();
 				obj = $(event.currentTarget);
 				index = $(config.navigation).index(obj);
