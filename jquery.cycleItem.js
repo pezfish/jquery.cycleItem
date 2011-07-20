@@ -49,6 +49,10 @@
 				isAfterForced = true;
 			}
 		},
+		resetCycle : function(){
+			current = config.initialIndex - 1;
+			next = 0;
+		},
 		disableNavigation : function(){
 			isEnabled = false;
 		},
