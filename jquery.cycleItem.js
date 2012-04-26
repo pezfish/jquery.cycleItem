@@ -6,7 +6,6 @@
 * http://www.gnu.org/licenses/gpl.html
 **/
 
-//test
 (function($){
 	var config = {
 		delay: 10000,
