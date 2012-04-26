@@ -107,7 +107,9 @@
 			return false;
 		},
 		_stopTimer : function(){
-			clearInterval(rotate);
+			if(typeof(rotate) !== 'undefined'){
+				clearInterval(rotate);
+			}
 			if(typeof(timeout) !== 'undefined'){
 				clearTimeout(timeout);
 			}
